@@ -1,0 +1,28 @@
+# save as cloud_storage_data.csv
+import pandas as pd
+import numpy as np
+# Function to generate synthetic data and save it to a CSV file
+def create_synthetic_data(csv_file_path):
+    # Set a random seed for reproducibility
+    np.random.seed(42)
+    # Generate synthetic data
+    num_samples = 1000
+    data = {
+        'disk_usage': np.random.uniform(0, 100, num_samples),  # Disk usage percentage
+        'memory_usage': np.random.uniform(0, 100, num_samples),  # Memory usage percentage
+        'cpu_load': np.random.uniform(0, 100, num_samples),  # CPU load percentage
+        'network_latency': np.random.uniform(0, 200, num_samples),  # Network latency in ms
+        'temperature': np.random.uniform(20, 80, num_samples),  # Temperature in Celsius
+        'failure': np.random.choice([0, 1], size=num_samples, p=[0.9, 0.1])  # 10% failure rate
+    }
+    # Create a DataFrame
+    df = pd.DataFrame(data)
+    # Save the DataFrame to a CSV file
+    df.to_csv(csv_file_path, index=False)
+    print(f"Sample CSV file created at: {csv_file_path}")
+# Main execution
+if __name__ == "__main__":
+    # Specify the path for the CSV file
+    csv_file_path = 'cloud_storage_data.csv'  # Update this line if needed
+    # Create synthetic data and save it to a CSV file
+    create_synthetic_data(csv_file_path)
